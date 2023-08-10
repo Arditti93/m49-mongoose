@@ -24,6 +24,28 @@ const addBook = async (req, res) => {
     }
 }
 
+const getAllBooks = async (req, res) => {
+    try {
+        const allBooks = await Book.find({})
+
+        const successResponse = {
+            message: "success",
+            books: allBooks
+        }
+        res.status(200).json(successResponse)
+
+    } catch (error) {
+        const errorResponse = {
+            message: "Error",
+            error: error
+        }
+        res.status(501).json(errorResponse)
+    }
+}
+
+
+
 module.exports = {
-    addBook
+    addBook,
+    getAllBooks
 }
